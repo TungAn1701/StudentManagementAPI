@@ -21,7 +21,6 @@ public interface StudentMapper {
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "id", ignore = true)
-    // Cập nhật Entity từ DTO (Dùng cho PUT/PATCH)
-    // Nó sẽ tự động bỏ qua các trường null nếu bạn cấu hình IGNORE ở trên
+   
     void updateEntityFromDto(studentRequestDTO dto, @MappingTarget studentEntity entity);
 }   
