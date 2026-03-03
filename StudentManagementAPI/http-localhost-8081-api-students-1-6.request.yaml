@@ -1,0 +1,11 @@
+$kind: http-request
+name: http://localhost:8081/api/students/1
+url: http://localhost:8081/api/students/filter?minGpa=2.0&maxGpa=3.5
+method: GET
+queryParams:
+  minGpa: "2.0"
+  maxGpa: "3.5"
+body:
+  type: json
+  content: ""
+order: 4383280279032735

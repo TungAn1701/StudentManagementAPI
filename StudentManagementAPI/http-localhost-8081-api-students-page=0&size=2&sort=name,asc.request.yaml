@@ -1,0 +1,12 @@
+$kind: http-request
+name: http://localhost:8081/api/students?page=0&size=2&sort=name,asc
+url: http://localhost:8081/api/students?page=0&size=2&sort=name,asc
+method: GET
+queryParams:
+  page: "0"
+  size: "2"
+  sort: name,asc
+body:
+  type: json
+  content: ""
+order: 1585373720315570
