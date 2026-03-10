@@ -1,0 +1,10 @@
+$kind: http-request
+name: http://localhost:8081/api/students/1
+url: http://localhost:8081/api/students/search?email=a@gmail.com
+method: GET
+queryParams:
+  email: a@gmail.com
+body:
+  type: json
+  content: ""
+order: 4226255231310632

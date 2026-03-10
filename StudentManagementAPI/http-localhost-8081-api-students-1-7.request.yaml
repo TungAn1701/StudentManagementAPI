@@ -1,0 +1,8 @@
+$kind: http-request
+name: http://localhost:8081/api/students/1
+url: http://localhost:8081/api/students/active
+method: GET
+body:
+  type: json
+  content: ""
+order: 4469793298539495
