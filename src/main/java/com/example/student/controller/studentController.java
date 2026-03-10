@@ -1,8 +1,12 @@
 package com.example.student.controller;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.student.dto.ClassesDTO;
+import com.example.student.dto.InvoicesResponseDTO;
 import com.example.student.dto.studentRequestDTO;
 import com.example.student.dto.studentResponseDTO;
 import com.example.student.exception.ApiResponse;
+import com.example.student.service.InvoicesService;
 import com.example.student.service.studentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +35,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 @RequiredArgsConstructor
 public class studentController {
     private final studentService service;
+    private final InvoicesService invoicesService;
     @PostMapping
     public ResponseEntity<ApiResponse<studentResponseDTO>> createStudent(@Valid @RequestBody studentRequestDTO input) {
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(service.createStudent(input), "Student created successfully"));
@@ -74,7 +79,15 @@ public class studentController {
     public ResponseEntity<ApiResponse<List<studentResponseDTO>>> getActiveStudents() {
         return ResponseEntity.ok(ApiResponse.success(service.getActiveStudents(), "Active students retrieved successfully"));
     }
-    
+    @GetMapping("/{id}/classes")
+    public ResponseEntity<ApiResponse<List<ClassesDTO>>> getClassesByStudent(@PathVariable("id") Long studentId) {
+        return ResponseEntity.ok(ApiResponse.success(service.getClassesByStudent(studentId),  "Lấy danh sách lớp học thành công"));
+    }
+
+    @GetMapping("/{id}/invoices")
+    public ResponseEntity<ApiResponse<List<InvoicesResponseDTO>>> getStudentInvoices(@PathVariable("id") Long studentId) {
+        return ResponseEntity.ok(ApiResponse.success(invoicesService.getInvoicesByStudent(studentId), "Lấy danh sách hóa đơn thành công"));
+    }
     
     
 }

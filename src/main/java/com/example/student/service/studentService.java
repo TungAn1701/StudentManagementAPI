@@ -1,8 +1,12 @@
 package com.example.student.service;
+import com.example.student.config.ClassesMapper;
 import com.example.student.config.StudentMapper;
+import com.example.student.dto.ClassesDTO;
 import com.example.student.dto.studentRequestDTO;
 import com.example.student.dto.studentResponseDTO;
+import com.example.student.entity.ClassEntity;
 import com.example.student.entity.studentEntity;
+import com.example.student.repository.EnrollmentRepository;
 import com.example.student.repository.studentRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +20,8 @@ import org.springframework.stereotype.Service;
 public class studentService {
     private final studentRepository repository;
     private final StudentMapper studentMapper;
-
+    private final ClassesMapper classesMapper;
+    private final EnrollmentRepository enrollmentRepository;
     public studentResponseDTO createStudent(studentRequestDTO requestDTO){
         studentEntity student = studentMapper.toEntity(requestDTO);
         studentEntity savedStudent = repository.save(student);
@@ -84,7 +89,16 @@ public class studentService {
                 .map(student -> studentMapper.toResponse(student))
                 .toList();
     }
-
+    public List<ClassesDTO> getClassesByStudent(Long studentId) {
+        // 1. Gọi Repo để lấy danh sách Entity
+        List<ClassEntity> classes = enrollmentRepository.findClassesByStudentId(studentId);
+        
+        // 2. Dùng Stream để biến đổi List<Entity> thành List<DTO> trả về cho người dùng
+        return classes.stream()
+                .map(classesMapper::toResponse)
+                .toList(); // Nếu dùng Java cũ hơn 16 thì dùng: .collect(Collectors.toList())
+    }
+    
 }
 
 

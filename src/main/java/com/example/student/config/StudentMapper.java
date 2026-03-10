@@ -14,13 +14,11 @@ public interface StudentMapper {
 
     // Map từ Entity sang Response (Dùng cho các lệnh GET)
     studentResponseDTO toResponse(studentEntity entity);
-    @Mapping(target = "updatedAt", ignore = true)
-    @Mapping(target = "createdAt", ignore = true)
     // Map từ Request sang Entity (Dùng cho POST)
-    studentEntity toEntity(studentRequestDTO request);
     @Mapping(target = "updatedAt", ignore = true)
-    @Mapping(target = "createdAt", ignore = true)
+    studentEntity toEntity(studentRequestDTO request);
     @Mapping(target = "id", ignore = true)
-   
+
+    @Mapping(target = "updatedAt", ignore = true)
     void updateEntityFromDto(studentRequestDTO dto, @MappingTarget studentEntity entity);
-}   
+}
