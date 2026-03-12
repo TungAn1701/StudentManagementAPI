@@ -2,9 +2,11 @@ package com.example.student.service;
 import com.example.student.config.ClassesMapper;
 import com.example.student.config.StudentMapper;
 import com.example.student.dto.ClassesDTO;
-import com.example.student.dto.studentResponseDTO;
+import com.example.student.dto.StudentResponseDTO;
+
 import com.example.student.entity.ClassEntity;
-import com.example.student.entity.studentEntity;
+import com.example.student.entity.StudentEntity;
+
 import com.example.student.repository.ClassRepository;
 import com.example.student.repository.EnrollmentRepository;
 
@@ -25,9 +27,9 @@ public class ClassService {
         ClassEntity savedClass = repository.save(classEntity);
         return classmapper.toResponse(savedClass);
     }
-    public List<studentResponseDTO> getStudentsByClass(Long classId) {
+    public List<StudentResponseDTO> getStudentsByClass(Long classId) {
         
-        List<studentEntity> students = enrollmentRepository.findStudentsByClassId(classId);
+        List<StudentEntity> students = enrollmentRepository.findStudentsByClassId(classId);
         
         
         return students.stream().map(studentmapper::toResponse).toList();

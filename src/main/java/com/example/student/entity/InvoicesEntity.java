@@ -38,7 +38,7 @@ public class InvoicesEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id", nullable = false)
-    private studentEntity id;
+    private StudentEntity id;
 
     @Column(name = "term")
     private String term;

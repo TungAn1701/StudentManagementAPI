@@ -3,11 +3,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.student.dto.ClassesDTO;
 import com.example.student.dto.InvoicesResponseDTO;
-import com.example.student.dto.studentRequestDTO;
-import com.example.student.dto.studentResponseDTO;
+import com.example.student.dto.StudentRequestDTO;
+import com.example.student.dto.StudentResponseDTO;
 import com.example.student.exception.ApiResponse;
 import com.example.student.service.InvoicesService;
-import com.example.student.service.studentService;
+import com.example.student.service.StudentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,23 +33,23 @@ import org.springframework.web.bind.annotation.PutMapping;
 @RestController
 @RequestMapping("/api/students")
 @RequiredArgsConstructor
-public class studentController {
-    private final studentService service;
+public class StudentController {
+    private final StudentService service;
     private final InvoicesService invoicesService;
     @PostMapping
-    public ResponseEntity<ApiResponse<studentResponseDTO>> createStudent(@Valid @RequestBody studentRequestDTO input) {
+    public ResponseEntity<ApiResponse<StudentResponseDTO>> createStudent(@Valid @RequestBody StudentRequestDTO input) {
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(service.createStudent(input), "Student created successfully"));
     }
     @GetMapping
-    public ResponseEntity<Page<studentResponseDTO>> getAllStudents(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC)Pageable pageable) {
+    public ResponseEntity<Page<StudentResponseDTO>> getAllStudents(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC)Pageable pageable) {
     // Spring sẽ tự động lấy page, size, và sort từ URL để đổ vào đối tượng pageable
         return ResponseEntity.ok(service.getAllStudents(pageable));
     }
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<studentResponseDTO>> getStudentById(@PathVariable Long id) {
+    public ResponseEntity<ApiResponse<StudentResponseDTO>> getStudentById(@PathVariable Long id) {
         return ResponseEntity.ok(ApiResponse.success(service.getStudentById(id), "Student retrieved successfully")); }
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse<studentResponseDTO>> updateStudent(@PathVariable Long id, @RequestBody studentRequestDTO requestDTO){
+    public ResponseEntity<ApiResponse<StudentResponseDTO>> updateStudent(@PathVariable Long id, @RequestBody StudentRequestDTO requestDTO){
         return ResponseEntity.ok(ApiResponse.success(service.updateStudent(id, requestDTO), "Student updated successfully"));
     }
     @DeleteMapping("/{id}")
@@ -68,15 +68,15 @@ public class studentController {
         return ResponseEntity.ok(ApiResponse.success(result, "Student activated successfully"));
     }
     @GetMapping("/search")
-    public ResponseEntity<ApiResponse<studentResponseDTO>> getStudentByEmail(@RequestParam String email) {
+    public ResponseEntity<ApiResponse<StudentResponseDTO>> getStudentByEmail(@RequestParam String email) {
         return ResponseEntity.ok(ApiResponse.success(service.getStudentByEmail(email), "Student retrieved by email successfully"));
     }
     @GetMapping("/filter")
-    public ResponseEntity<ApiResponse<List<studentResponseDTO>>> filterStudentsByGPA(@RequestParam Double minGpa, @RequestParam Double maxGpa) {
+    public ResponseEntity<ApiResponse<List<StudentResponseDTO>>> filterStudentsByGPA(@RequestParam Double minGpa, @RequestParam Double maxGpa) {
         return ResponseEntity.ok(ApiResponse.success(service.filterStudentsByGPA(minGpa, maxGpa), "Students filtered by GPA successfully"));
     }
     @GetMapping("/active")
-    public ResponseEntity<ApiResponse<List<studentResponseDTO>>> getActiveStudents() {
+    public ResponseEntity<ApiResponse<List<StudentResponseDTO>>> getActiveStudents() {
         return ResponseEntity.ok(ApiResponse.success(service.getActiveStudents(), "Active students retrieved successfully"));
     }
     @GetMapping("/{id}/classes")

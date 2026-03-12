@@ -13,7 +13,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 @Data
 @JsonPropertyOrder({ "id", "name", "email", "gpa", "age", "active", "createdAt" })
-public class studentResponseDTO {
+public class StudentResponseDTO {
     private Long id;
     @NotBlank(message = "Tên không được để trống")
     private String name;

@@ -11,7 +11,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 @Data
-public class studentRequestDTO {
+public class StudentRequestDTO {
     private Long id;
     @NotBlank(message = "Tên không được để trống")
     private String name;

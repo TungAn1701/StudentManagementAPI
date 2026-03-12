@@ -15,10 +15,12 @@ import com.example.student.entity.InvoicesEntity;
 import com.example.student.entity.InvoicesStatus;
 import com.example.student.entity.PaymentMethod;
 import com.example.student.entity.PaymentsEntity;
-import com.example.student.entity.studentEntity;
+import com.example.student.entity.StudentEntity;
+
 import com.example.student.repository.InvoicesRespository;
 import com.example.student.repository.PaymentsRepository;
-import com.example.student.repository.studentRepository;
+import com.example.student.repository.StudentRepository;
+
 
 import org.springframework.transaction.annotation.Transactional; 
 import lombok.RequiredArgsConstructor;
@@ -27,14 +29,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class InvoicesService {
     private final InvoicesRespository invoicesRepository;
-    private final studentRepository studentRepo;
+    private final StudentRepository studentRepo;
     private final InvoicesMapper mapper;
     private final PaymentsRepository paymentRepository;
     private final PaymentsMapper paymentMapper;
 
     public InvoicesResponseDTO createInvoice(InvoicesRequestDTO dto) {
    
-        studentEntity student = studentRepo.findById(dto.getStudent_id())
+        StudentEntity student = studentRepo.findById(dto.getStudent_id())
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy sinh viên để tạo hóa đơn"));
         InvoicesEntity invoice = mapper.toEntity(dto);
         invoice.setId(student);

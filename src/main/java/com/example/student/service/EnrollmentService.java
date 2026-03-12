@@ -7,10 +7,12 @@ import com.example.student.dto.EnrollmentRequestDTO;
 import com.example.student.dto.EnrollmentResponseDTO; 
 import com.example.student.entity.ClassEntity;
 import com.example.student.entity.EnrollmentEntity;
-import com.example.student.entity.studentEntity;
+import com.example.student.entity.StudentEntity;
+
 import com.example.student.repository.ClassRepository;
 import com.example.student.repository.EnrollmentRepository;
-import com.example.student.repository.studentRepository;
+import com.example.student.repository.StudentRepository;
+
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,13 +20,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class EnrollmentService {
     private final EnrollmentRepository enrollmentRepository;
-    private final studentRepository studentRepository;
+    private final StudentRepository studentRepository;
     private final ClassRepository classRepository;
     private final EnrollmentMapper mapper;
 
     public EnrollmentResponseDTO enroll(EnrollmentRequestDTO dto) {
  
-        studentEntity student = studentRepository.findById(dto.getStudent_id())
+        StudentEntity student = studentRepository.findById(dto.getStudent_id())
                 .orElseThrow(() -> new RuntimeException("Student not found"));
         
 
