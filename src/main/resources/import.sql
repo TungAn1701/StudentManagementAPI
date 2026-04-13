@@ -1,0 +1,4 @@
+-- Tạo sẵn 1 tài khoản: user là 'admin', mật khẩu là '123' (đã mã hóa BCrypt)
+-- Nếu bảng 'users' chưa có, Spring Boot sẽ tự tạo dựa trên Entity @Entity bạn viết sau này
+-- INSERT INTO users (username, password, role) 
+-- VALUES ('admin', '$2a$10$8.UnVuG9HHgffUDAlk8q6uy5y.0R.9950X9Ush.U/2fS795/1L/9W', 'ROLE_ADMIN');
