@@ -2,6 +2,7 @@ package com.example.student.dto;
 
 import java.time.LocalDateTime;
 
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -27,4 +28,5 @@ public class StudentResponseDTO {
     private Boolean active=true;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
+
 }

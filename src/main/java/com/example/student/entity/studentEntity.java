@@ -1,5 +1,7 @@
 package com.example.student.entity;
 
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,6 +38,7 @@ public class StudentEntity extends BaseEntity {
     private Double gpa;
     @Column(name = "active")
     private Boolean active = true;
+
 
 
 }
